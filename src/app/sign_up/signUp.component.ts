@@ -27,13 +27,18 @@ export class SignUpComponent {
         this.confirm = this.form.controls['confirm'];
     }
 
-    passwordLogin(form) {
-        let promise = this.af.auth.login(form);
-        promise.then(response => {
-            this.router.navigate(['Home']);
-        }).catch(err => {
-            this.massage = "The specified user does not exist.";
-        });
+    createUser(form) {
+        if(form.password === form.confirm){
+            let promise = this.af.auth.createUser(form);
+            promise.then(response => {
+                this.router.navigate(['Login']);
+            }).catch(err => {
+                console.log(err.massage);
+                this.massage = "Something when wrong.";
+            });
+        } else{
+
+        }
     }
 
     facebookLogin() {
