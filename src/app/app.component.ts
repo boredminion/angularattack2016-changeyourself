@@ -6,6 +6,7 @@ import { HomeComponent } from './home';
 import { Explore } from './explore';
 import { AboutComponent } from './about';
 import { LoginComponent } from './login';
+import { SignUpComponent } from './sign_up';
 
 import '../style/app.scss';
 
@@ -26,7 +27,8 @@ import '../style/app.scss';
 @RouteConfig([
   {path: '/', component: HomeComponent, name: 'Home'},
   {path: '/About', component: AboutComponent, name: 'About'},
-  {path: '/login', component: LoginComponent, name: 'Login'}
+  {path: '/login', component: LoginComponent, name: 'Login'},
+  {path: '/signUp', component: SignUpComponent, name: 'SignUp'},
   {path: '/Explore/:q', component: Explore, name: 'Explore'}
 ])
 export class AppComponent {

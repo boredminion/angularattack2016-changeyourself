@@ -1,0 +1,34 @@
+<div class="lginComponent">
+    <h4>Sign Up</h4>
+
+    <div class="form">
+        <form [ngFormModel]="form" (ngSubmit)="passwordLogin(form.value)">
+            <div class="input-block">
+                <input type="email" id="email" placeholder="Email" [ngFormControl]="email">
+            </div>
+            <div class="input-block">
+                <input type="password" id="password" placeholder="Password" [ngFormControl]="password">
+            </div>
+            <div class="input-block">
+                <input type="password" id="remid_password" placeholder="confirm password" [ngFormControl]="confirm">
+            </div>
+            <div class="input-block text-right">
+                <div class="text-ceter">{{massage}}</div>
+                <button type="submit" [disabled]="!form.valid">Log in</button>
+            </div>
+        </form>
+    </div>
+    <div class="social">
+        <ul class="social-items">
+            <li class="social-item">
+                <span (click)="facebookLogin()">Facebook</span>
+            </li>
+            <li class="social-item">
+                <span (click)="googleLogin()">Google</span>
+            </li>
+            <li class="social-item">
+                <span (click)="twitterLogin()">Twitter</span>
+            </li>
+        </ul>
+    </div>
+</div>
