@@ -18,6 +18,12 @@ export class Explore implements OnInit {
     entities: Object = [];
 
     constructor(public mapService:MapService, routeParams:RouteParams) {
+
+        //console.log('q', routeParams.get('q'));
+        //console.log('q - ', routeParams.get('q') ? routeParams.get('q').lat : null);
+        console.log(routeParams.get('lat'));
+        console.log(routeParams.get('lng'));
+
         this.lat = +routeParams.get('lat');
         this.lng = +routeParams.get('lng');
     }

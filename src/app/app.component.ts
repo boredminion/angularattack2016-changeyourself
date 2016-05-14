@@ -28,7 +28,7 @@ import '../style/app.scss';
   {path: '/About', component: AboutComponent, name: 'About'},
   {path: '/login', component: LoginComponent, name: 'Login'},
   {path: '/signUp', component: SignUpComponent, name: 'SignUp'},
-  {path: '/Explore/:q', component: Explore, name: 'Explore'}
+  {path: '/Explore', component: Explore, name: 'Explore'}
 ])
 export class AppComponent {
   authState: boolean;
