@@ -10,9 +10,6 @@ import { SignUpComponent } from './sign_up';
 
 import '../style/app.scss';
 
-
-
-
 /*
  * App Component
  * Top Level Component
