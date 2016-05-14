@@ -1,23 +1,26 @@
 import { Component, OnInit } from '@angular/core';
 import { RouteParams, Router } from '@angular/router-deprecated';
 import { MapService } from './../services/map.service';
+import { Entities } from './entities';
+import { Map } from './map';
 
 @Component({
     selector: 'explore',
     viewProviders: [MapService],
+    directives: [Entities, Map],
     template: require('./explore.component.html'),
     styles: [require('./explore.component.scss')]
 })
 export class Explore implements OnInit {
 
-    constructor(routeParams:RouteParams, mapService:MapService) {
-        console.log('routeParams', routeParams.get('lat'))
-        console.log('routeParams', routeParams.get('lon'))
+    entities: Object = [];
 
-        mapService.fetchEntities('50.492105','30.521307')
+    constructor(routeParams:RouteParams, mapService:MapService) {
+
+        mapService.fetchEntities(routeParams.get('lat'), routeParams.get('lon'))
             .then(data => {
-                console.log(data);
-            })
+                this.entities = data;
+            });
     }
 
     ngOnInit() {
