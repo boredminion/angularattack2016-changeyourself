@@ -33,9 +33,9 @@ export class LoginComponent {
         });
     }
 
-    facebookLogin() {
+    socialLogin(provider:string) {
         let promise = this.af.auth.login({
-            provider: AuthProviders.Facebook,
+            provider: AuthProviders[provider],
             method: AuthMethods.Popup,
         });
         promise.then(response => {
@@ -43,35 +43,7 @@ export class LoginComponent {
             console.log(response);
         }).catch(err => {
             console.log(err);
-            this.router.navigate(['Home']);
-        });
-    }
-
-    googleLogin() {
-        let promise = this.af.auth.login({
-            provider: AuthProviders.Google,
-            method: AuthMethods.Popup,
-        });
-        promise.then(response => {
-            this.router.navigate(['Home']);
-            console.log(response);
-        }).catch(err => {
-            console.log(err);
-            this.router.navigate(['Home']);
-        });
-    }
-
-    twitterLogin() {
-        let promise = this.af.auth.login({
-            provider: AuthProviders.Twitter,
-            method: AuthMethods.Popup,
-        });
-        promise.then(response => {
-            this.router.navigate(['Home']);
-            console.log(response);
-        }).catch(err => {
-            console.log(err);
-            this.router.navigate(['Home']);
+            this.massage = "Something when wrong.";
         });
     }
 

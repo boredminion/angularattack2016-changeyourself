@@ -31,6 +31,7 @@ export class SignUpComponent {
         if(form.password === form.confirm){
             let promise = this.af.auth.createUser(form);
             promise.then(response => {
+                console.log(this.af);
                 this.router.navigate(['Login']);
             }).catch(err => {
                 console.log(err.massage);
@@ -41,9 +42,9 @@ export class SignUpComponent {
         }
     }
 
-    facebookLogin() {
+    socialLogin(provider:string) {
         let promise = this.af.auth.login({
-            provider: AuthProviders.Facebook,
+            provider: AuthProviders[provider],
             method: AuthMethods.Popup,
         });
         promise.then(response => {
@@ -51,21 +52,7 @@ export class SignUpComponent {
             console.log(response);
         }).catch(err => {
             console.log(err);
-            this.router.navigate(['Home']);
-        });
-    }
-
-    googleLogin() {
-        this.af.auth.login({
-            provider: AuthProviders.Google,
-            method: AuthMethods.Popup,
-        });
-    }
-
-    twitterLogin() {
-        this.af.auth.login({
-            provider: AuthProviders.Twitter,
-            method: AuthMethods.Popup,
+            this.massage = "Something when wrong.";
         });
     }
 

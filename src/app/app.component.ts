@@ -1,5 +1,6 @@
 import { Component } from '@angular/core';
 import { RouteConfig, ROUTER_DIRECTIVES } from '@angular/router-deprecated';
+import { AuthProviders, FirebaseAuth, FirebaseAuthState } from 'angularfire2';
 
 import { ApiService } from './shared';
 import { HomeComponent } from './home';
@@ -32,8 +33,16 @@ import '../style/app.scss';
   {path: '/Explore/:q', component: Explore, name: 'Explore'}
 ])
 export class AppComponent {
-  url = 'https://github.com/preboot/angular2-webpack';
+  private authState: FirebaseAuthData|FirebaseAuthState;
 
-  constructor(private api: ApiService) {
+  constructor(private api: ApiService, public auth$: FirebaseAuth) {
+    this.authState = auth$.getAuth();
+
+    auth$.subscribe((state: FirebaseAuthState) => {
+      this.authState = state;
+    });
+  }
+  get_authenticated(){
+    return this.authState !== null;
   }
 }
