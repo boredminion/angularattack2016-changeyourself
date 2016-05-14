@@ -1,6 +1,6 @@
 import { Component } from '@angular/core';
 import { RouteConfig, ROUTER_DIRECTIVES } from '@angular/router-deprecated';
-import { AuthProviders, FirebaseAuth, FirebaseAuthState } from 'angularfire2';
+import { AuthService } from './services/auth.servise';
 
 import { ApiService } from './shared';
 import { HomeComponent } from './home';
@@ -18,6 +18,7 @@ import '../style/app.scss';
 @Component({
   selector: 'my-app', // <my-app></my-app>
   providers: [ApiService],
+  viewProviders: [AuthService],
   directives: [...ROUTER_DIRECTIVES],
   template: require('./app.component.html'),
   styles: [require('./app.component.scss')],
@@ -30,16 +31,20 @@ import '../style/app.scss';
   {path: '/Explore/:q', component: Explore, name: 'Explore'}
 ])
 export class AppComponent {
-  private authState: FirebaseAuthData|FirebaseAuthState;
+  authState: boolean;
+  user: any;
 
-  constructor(private api: ApiService, public auth$: FirebaseAuth) {
-    this.authState = auth$.getAuth();
-
-    auth$.subscribe((state: FirebaseAuthState) => {
-      this.authState = state;
+  constructor(private api: ApiService, public auth: AuthService) {
+    this.user = auth.currentUser();
+    this.authState = auth.authenticated;
+    auth.getAuthChangeEmitter().subscribe(() => {
+      this.user = auth.currentUser();
+      this.authState = auth.authenticated;
     });
   }
-  get_authenticated(){
-    return this.authState !== null;
+
+  signOut(){
+    this.auth.signOut()
   }
+
 }

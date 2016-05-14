@@ -1,11 +1,12 @@
 <header>
-  <div>{{get_authenticated()}}</div>
-  <nav>
+  <nav [ngSwitch]="authState">
     <a [routerLink]="['Home']">Home</a>
     <a [routerLink]="['About']">About</a>
     <a [routerLink]="['Explore', {q:'?lat=50.492105&lng=30.521307'}]">Explore</a>
-    <a [routerLink]="['SignUp']">SignUp</a>
-    <a [routerLink]="['Login']">Login</a>
+    <a [routerLink]="['SignUp']" *ngSwitchWhen="false">Sign Up</a>
+    <a [routerLink]="['Login']" *ngSwitchWhen="false">Login</a>
+    <a (click)="signOut()" *ngSwitchWhen="true">Sign Out</a>
+    <span></span>
   </nav>
 </header>
 <main>
