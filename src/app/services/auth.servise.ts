@@ -19,9 +19,18 @@ export class AuthService{
     }
 
     currentUser() {
-        var user = {
-            
-        };
+        //if(!this.authState){
+        //    return false
+        //}
+        //var user = {
+        //    uid: this.authState.uid
+        //};
+        //switch (this.authState.provider){
+        //    case 1:
+        //        user.name = this.authState['twitter'].displayName;
+        //        user.img = this.authState['twitter'].profileImageURL;
+        //}
+        //return user;
         return this.authState;
     }
 
