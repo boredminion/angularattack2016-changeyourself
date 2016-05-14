@@ -13,18 +13,19 @@ import { Map } from './map';
 })
 export class Explore implements OnInit {
 
+    lat: number = 0;
+    lng: number = 0;
     entities: Object = [];
 
-    constructor(routeParams:RouteParams, mapService:MapService) {
+    constructor(public mapService:MapService, routeParams:RouteParams) {
+        this.lat = +routeParams.get('lat');
+        this.lng = +routeParams.get('lng');
+    }
 
-        mapService.fetchEntities(routeParams.get('lat'), routeParams.get('lon'))
+    ngOnInit() {
+        this.mapService.fetchEntities(this.lat, this.lng)
             .then(data => {
                 this.entities = data;
             });
     }
-
-    ngOnInit() {
-        console.log('Hello explore');
-    }
-
 }

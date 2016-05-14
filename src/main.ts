@@ -10,6 +10,7 @@ import { FIREBASE_PROVIDERS, defaultFirebase, AngularFire,
     firebaseAuthConfig } from 'angularfire2';
 import { JSONP_PROVIDERS } from '@angular/http';
 import { FIREBASE_PROVIDERS, defaultFirebase } from 'angularfire2';
+import {ANGULAR2_GOOGLE_MAPS_PROVIDERS} from 'angular2-google-maps/core';
 
 import {AppComponent} from './app/app.component';
 
@@ -27,6 +28,7 @@ bootstrap(AppComponent, [
     ...JSONP_PROVIDERS,
     ...ROUTER_PROVIDERS,
     ...ENV_PROVIDERS,
+    ...ANGULAR2_GOOGLE_MAPS_PROVIDERS,
     {provide: LocationStrategy, useClass: HashLocationStrategy},
     FIREBASE_PROVIDERS,
     defaultFirebase('https://changeyouself.firebaseio.com/'),

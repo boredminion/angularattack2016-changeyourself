@@ -14,7 +14,7 @@ export class MapService {
     constructor(private http: Http) {
     }
 
-    public fetchEntities(lat: string, lon: string){
+    public fetchEntities(lat: number, lon: number){
 
         return new Promise((resolve, reject) => {
             try{
