@@ -8,6 +8,8 @@ import { FIREBASE_PROVIDERS, defaultFirebase, AngularFire,
     AuthMethods,
     AuthProviders,
     firebaseAuthConfig } from 'angularfire2';
+import { JSONP_PROVIDERS } from '@angular/http';
+import { FIREBASE_PROVIDERS, defaultFirebase } from 'angularfire2';
 
 import {AppComponent} from './app/app.component';
 
@@ -22,6 +24,7 @@ if (process.env.ENV === 'build') {
 bootstrap(AppComponent, [
     // These are dependencies of our App
     ...HTTP_PROVIDERS,
+    ...JSONP_PROVIDERS,
     ...ROUTER_PROVIDERS,
     ...ENV_PROVIDERS,
     {provide: LocationStrategy, useClass: HashLocationStrategy},

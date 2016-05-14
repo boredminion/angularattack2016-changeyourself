@@ -1,8 +1,12 @@
-<p>
-    About Works!
-</p>
-<ul *ngFor="let item of items | async">
-    <li class="text">
-        {{item.name}}
-    </li>
-</ul>
+<div>
+    <p>
+        About Works!
+    </p>
+    <div> {{ (af.auth | async).uid }} </div>
+    <!--<ul *ngFor="let item of items | async">-->
+    <!--<li class="text">-->
+    <!--{{item.name}}-->
+    <!--</li>-->
+    <!--</ul>-->
+
+</div>
