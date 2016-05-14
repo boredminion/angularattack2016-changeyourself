@@ -1,2 +1,22 @@
-<sebm-google-map [latitude]="lat" [longitude]="lng">
+<sebm-google-map
+    [latitude]="lat"
+    [longitude]="lng"
+    disableDefaultUI="disables"
+    >
+
+    <sebm-google-map-marker
+        *ngFor="let entity of entities"
+        [latitude]="entity.geometry.location.lat"
+        [longitude]="entity.geometry.location.lng"
+        [label]="entity.name"
+        [markerDraggable]="false"
+        >
+
+        <sebm-google-map-info-window>
+            <strong>{{entity.name}}</strong>
+            <div>{{entity.vicinity}}</div>
+        </sebm-google-map-info-window>
+
+    </sebm-google-map-marker>
+
 </sebm-google-map>
