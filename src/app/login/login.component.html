@@ -9,9 +9,8 @@
             <div class="input-block">
                 <input type="password" id="password" placeholder="Password" [ngFormControl]="password">
             </div>
-            <div *ngIf="!form.valid"
-                 class="ui error message">Form is invalid</div>
             <div class="input-block text-right">
+                <div class="text-ceter">{{massage}}</div>
                 <button type="submit" [disabled]="!form.valid">Log in</button>
             </div>
         </form>
