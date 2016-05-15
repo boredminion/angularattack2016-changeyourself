@@ -31,8 +31,21 @@ export class SignUpComponent {
         if(form.password === form.confirm){
             let promise = this.af.auth.createUser(form);
             promise.then(response => {
-                console.log(this.af);
-                this.router.navigate(['Login']);
+                let promise = this.af.auth.login({
+                    email: form.email,
+                    password: form.password
+                });
+                promise.then(response=>{
+                    console.log(response);
+                    this.af.database.object('/users/' +  response.uid).set({
+                        name: '',
+                        email: response.password.email,
+                        profileImageURL: response.password.profileImageURL,
+                        id: response.uid,
+                        role: 'user'
+                    });
+                    this.router.navigate(['Home']);
+                });
             }).catch(err => {
                 console.log(err.massage);
                 this.massage = "Something when wrong.";
@@ -48,8 +61,19 @@ export class SignUpComponent {
             method: AuthMethods.Popup,
         });
         promise.then(response => {
-            this.router.navigate(['Home']);
-            console.log(response);
+            let promise = this.af.database.object('/users/' + response.uid);
+            promise.subscribe(user => {
+                if(!user){
+                    this.af.database.object('/users/' + response.uid).set({
+                        name: response[provider.toLowerCase()].displayName,
+                        email: '',
+                        profileImageURL: response[provider.toLowerCase()].profileImageURL,
+                        id: response.uid,
+                        role: 'user'
+                    });
+                }
+                this.router.navigate(['Home']);
+            })
         }).catch(err => {
             console.log(err);
             this.massage = "Something when wrong.";
