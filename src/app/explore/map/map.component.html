@@ -2,6 +2,8 @@
     [latitude]="lat"
     [longitude]="lng"
     disableDefaultUI="disables"
+    zoom="12"
+    (mapClick)="clickOnMap($event)">
     >
 
     <sebm-google-map-marker
@@ -10,6 +12,8 @@
         [longitude]="entity.geometry.location.lng"
         [label]="entity.name"
         [markerDraggable]="false"
+        [zoom]="zoom"
+        (markerClick)="clickOnMarker(entity.id, entity.place_id)"
         >
 
         <sebm-google-map-info-window>

@@ -1,13 +1,13 @@
 import { Component, OnInit } from '@angular/core';
 import { RouteParams, Router } from '@angular/router-deprecated';
 import { MapService } from './../services/map.service';
-import { Entities } from './entities';
+import { EntityDetails } from './entity-details';
 import { Map } from './map';
 
 @Component({
     selector: 'explore',
     viewProviders: [MapService],
-    directives: [Entities, Map],
+    directives: [EntityDetails, Map],
     template: require('./explore.component.html'),
     styles: [require('./explore.component.scss')]
 })
@@ -15,17 +15,13 @@ export class Explore implements OnInit {
 
     lat: number = 0;
     lng: number = 0;
+    place: string = null;
     entities: Object = [];
 
     constructor(public mapService:MapService, routeParams:RouteParams) {
-
-        //console.log('q', routeParams.get('q'));
-        //console.log('q - ', routeParams.get('q') ? routeParams.get('q').lat : null);
-        console.log(routeParams.get('lat'));
-        console.log(routeParams.get('lng'));
-
         this.lat = +routeParams.get('lat');
         this.lng = +routeParams.get('lng');
+        this.place = routeParams.get('place');
     }
 
     ngOnInit() {

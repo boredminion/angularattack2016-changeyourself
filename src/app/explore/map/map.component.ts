@@ -11,4 +11,12 @@ export class Map {
     @Input() entities: any[];
     @Input() lat: number;
     @Input() lng: number;
+
+    clickOnMap(){
+        alert('clickOnMap');
+    }
+
+    clickOnMarker(){
+        alert('clickOnMarker');
+    }
 }

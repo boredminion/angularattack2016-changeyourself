@@ -1,14 +1,11 @@
-<table>
-    <tr>
-        <td width="50%">
-            <entities [entities]="entities"></entities>
-        </td>
-        <td width="50%">
-            <map
-                [entities]="entities"
-                [lat]="lat"
-                [lng]="lng"
-                ></map>
-        </td>
-    </tr>
-</table>
+<entity-details
+    *ngIf="place"
+    [placeId]="place"
+    >
+</entity-details>
+<map
+    [entities]="entities"
+    [lat]="lat"
+    [lng]="lng"
+    >
+</map>
