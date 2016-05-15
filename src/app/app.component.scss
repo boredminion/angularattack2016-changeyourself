@@ -41,8 +41,14 @@ my-home{
     display: inline-block;
   }
 
+  span{
+    font-weight: bold;
+    color: #ffffff;
+  }
+
   img{
     width: 100%;
+    border-radius: 50px;
   }
 }
 
