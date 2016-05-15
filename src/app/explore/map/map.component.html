@@ -10,10 +10,10 @@
         *ngFor="let entity of entities"
         [latitude]="entity.geometry.location.lat"
         [longitude]="entity.geometry.location.lng"
-        [label]="entity.name"
+        [tooltip]="entity.name"
         [markerDraggable]="false"
         [zoom]="zoom"
-        (markerClick)="clickOnMarker({id: entity.id, placeId: entity.place_id})"
+        (markerClick)="clickOnMarker($event, entity.place_id)"
         >
 
         <sebm-google-map-info-window>

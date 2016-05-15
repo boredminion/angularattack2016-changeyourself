@@ -5,11 +5,12 @@ import { Injectable } from '@angular/core';
 @Injectable()
 export class MapService {
 
-    private radius   = 1000;
+    private radius   = 3000;
     private appKey   = 'AIzaSyA2bEAEuu9sqN79e0-TVWhRfhOH-PAYWXw';
     private type     = 'gym';
     private sensor   = false;
     public entities: Object  = [];
+    public entity: Object  = [];
 
     constructor(private http: Http) {
     }
@@ -22,6 +23,22 @@ export class MapService {
                     .subscribe(responce => {
                         this.entities = responce.json().results;
                         resolve(this.entities);
+                    });
+            }catch(e){
+                reject(e);
+            }
+        });
+    }
+
+
+    public fetchEntityDetails(placeId: string){
+
+        return new Promise((resolve, reject) => {
+            try{
+                this.http.get(`https://maps.googleapis.com/maps/api/place/details/json?placeid=${placeId}&sensor=false&key=${this.appKey}`)
+                    .subscribe(responce => {
+                        this.entity = responce.json().result;
+                        resolve(this.entity);
                     });
             }catch(e){
                 reject(e);

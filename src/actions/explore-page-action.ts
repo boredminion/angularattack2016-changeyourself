@@ -1,5 +1,6 @@
-import {Injectable} from "@angular/core";
-import {Actions,AppStore} from "angular2-redux";
+import { Injectable } from "@angular/core";
+import { Http } from '@angular/http';
+import { Actions, AppStore } from "angular2-redux";
 
 type Types = "SHOW_DETAILS_WINDOW" | "HIDE_DETAILS_WINDOW";
 export const ExplorePageTypes = {
@@ -10,16 +11,15 @@ export const ExplorePageTypes = {
 @Injectable()
 export class ExplorePageActions extends Actions {
 
-    constructor(appStore:AppStore) {
+    constructor(appStore:AppStore, private http: Http) {
         super(appStore);
     }
 
     showWindowDetails(id) {
         return {type: ExplorePageTypes.SHOW_DETAILS_WINDOW, id};
-    };
+    }
 
     hideWindowDetails() {
         return {type: ExplorePageTypes.HIDE_DETAILS_WINDOW};
-    };
-
+    }
 }

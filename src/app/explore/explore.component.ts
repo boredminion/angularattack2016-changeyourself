@@ -35,8 +35,6 @@ export class Explore implements OnInit, OnDestroy {
                 this.isShowEntityDetails = false;
             }
         });
-
-        appStore.dispatch(exploreActions.showWindowDetails(45))
     }
 
     ngOnInit() {
