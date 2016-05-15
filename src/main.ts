@@ -1,4 +1,4 @@
-import { enableProdMode } from '@angular/core';
+import { enableProdMode, provide } from '@angular/core';
 import { bootstrap } from '@angular/platform-browser-dynamic';
 import { ELEMENT_PROBE_PROVIDERS } from '@angular/platform-browser';
 import { ROUTER_PROVIDERS } from '@angular/router-deprecated';
@@ -22,6 +22,15 @@ if (process.env.ENV === 'build') {
     ENV_PROVIDERS.push(ELEMENT_PROBE_PROVIDERS);
 }
 
+import {AppStore,createAppStoreFactoryWithOptions} from "angular2-redux";
+import explore from './reducers/explore-page-reducer';
+import {ExplorePageActions} from './actions/explore-page-action';
+
+const appStoreFactory = createAppStoreFactoryWithOptions({
+    reducers:{ explore },
+    debug:true
+});
+
 bootstrap(AppComponent, [
     // These are dependencies of our App
     ...HTTP_PROVIDERS,
@@ -35,6 +44,8 @@ bootstrap(AppComponent, [
     firebaseAuthConfig({
         provider: AuthProviders.Password,
         method: AuthMethods.Password
-    })
+    }),
+    provide(AppStore, { useFactory: appStoreFactory }),
+    ExplorePageActions
 ])
     .catch(err => console.error(err));

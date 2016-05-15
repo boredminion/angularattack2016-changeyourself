@@ -1,5 +1,7 @@
 import { Component, Input } from '@angular/core';
-import {ANGULAR2_GOOGLE_MAPS_DIRECTIVES} from 'angular2-google-maps/core';
+import { ANGULAR2_GOOGLE_MAPS_DIRECTIVES } from 'angular2-google-maps/core';
+import { AppStore } from "angular2-redux";
+import { ExplorePageActions } from "./../../../actions/explore-page-action";
 
 @Component({
     selector: 'map',
@@ -12,11 +14,14 @@ export class Map {
     @Input() lat: number;
     @Input() lng: number;
 
-    clickOnMap(){
-        alert('clickOnMap');
+    constructor(public explorePageActions: ExplorePageActions, public appStore: AppStore){
     }
 
-    clickOnMarker(){
-        alert('clickOnMarker');
+    clickOnMap(event){
+        this.appStore.dispatch(this.explorePageActions.hideWindowDetails());
+    }
+
+    clickOnMarker(event){
+        this.appStore.dispatch(this.explorePageActions.showWindowDetails(event.placeId));
     }
 }
