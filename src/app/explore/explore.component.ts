@@ -1,31 +1,42 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, OnDestroy } from '@angular/core';
 import { RouteParams, Router } from '@angular/router-deprecated';
+import { AppStore } from "angular2-redux";
+import { ExplorePageActions, ExplorePageTypes } from "./../../actions/explore-page-action";
 import { MapService } from './../services/map.service';
-import { Entities } from './entities';
+import { EntityDetails } from './entity-details';
 import { Map } from './map';
 
 @Component({
     selector: 'explore',
     viewProviders: [MapService],
-    directives: [Entities, Map],
+    directives: [EntityDetails, Map],
     template: require('./explore.component.html'),
     styles: [require('./explore.component.scss')]
 })
-export class Explore implements OnInit {
+export class Explore implements OnInit, OnDestroy {
 
-    lat: number = 0;
-    lng: number = 0;
-    entities: Object = [];
+    lat:number = 0;
+    lng:number = 0;
+    place:string = null;
+    entities:Object = [];
+    isShowEntityDetails: boolean = false;
+    private unsubscribeFromStore:()=>void;
 
-    constructor(public mapService:MapService, routeParams:RouteParams) {
-
-        //console.log('q', routeParams.get('q'));
-        //console.log('q - ', routeParams.get('q') ? routeParams.get('q').lat : null);
-        console.log(routeParams.get('lat'));
-        console.log(routeParams.get('lng'));
-
+    constructor(public mapService:MapService, routeParams:RouteParams, appStore: AppStore, exploreActions: ExplorePageActions) {
         this.lat = +routeParams.get('lat');
         this.lng = +routeParams.get('lng');
+        this.place = routeParams.get('place');
+
+        this.unsubscribeFromStore = appStore.subscribe((state) => {
+            if(ExplorePageTypes.SHOW_DETAILS_WINDOW == state.explore.entityDetailsState){
+                this.isShowEntityDetails = true;
+            }
+            if(ExplorePageTypes.HIDE_DETAILS_WINDOW == state.explore.entityDetailsState){
+                this.isShowEntityDetails = false;
+            }
+        });
+
+        appStore.dispatch(exploreActions.showWindowDetails(45))
     }
 
     ngOnInit() {
@@ -33,5 +44,9 @@ export class Explore implements OnInit {
             .then(data => {
                 this.entities = data;
             });
+    }
+
+    public ngOnDestroy() {
+        this.unsubscribeFromStore();
     }
 }
