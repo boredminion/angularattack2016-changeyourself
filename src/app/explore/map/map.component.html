@@ -13,7 +13,7 @@
         [label]="entity.name"
         [markerDraggable]="false"
         [zoom]="zoom"
-        (markerClick)="clickOnMarker(entity.id, entity.place_id)"
+        (markerClick)="clickOnMarker({id: entity.id, placeId: entity.place_id})"
         >
 
         <sebm-google-map-info-window>
