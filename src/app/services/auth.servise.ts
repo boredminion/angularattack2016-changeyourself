@@ -18,20 +18,39 @@ export class AuthService{
         return this.authState !== null && !this.expired;
     }
 
-    currentUser() {
-        //if(!this.authState){
-        //    return false
-        //}
-        //var user = {
-        //    uid: this.authState.uid
-        //};
-        //switch (this.authState.provider){
-        //    case 1:
-        //        user.name = this.authState['twitter'].displayName;
-        //        user.img = this.authState['twitter'].profileImageURL;
-        //}
-        //return user;
-        return this.authState;
+    currentUser(){
+        var user = {
+            uid: '',
+            name: '',
+            img: ''
+        };
+        if(this.authState){
+            switch (this.authState.provider){
+                case 1:
+                    user.uid = this.authState.uid;
+                    user.name = this.authState['twitter'].displayName;
+                    user.img = this.authState['twitter'].profileImageURL;
+                    break;
+                case 2:
+                    user.uid = this.authState.uid;
+                    user.name = this.authState['facebook'].displayName;
+                    user.img = this.authState['facebook'].profileImageURL;
+                    break;
+                case 3:
+                    user.uid = this.authState.uid;
+                    user.name = this.authState['google'].displayName;
+                    user.img = this.authState['google'].profileImageURL;
+                    break;
+                case 4:
+                    user.uid = this.authState.uid;
+                    user.name = this.authState['password'].email;
+                    user.img = this.authState['password'].profileImageURL;
+                    break;
+            }
+        }
+
+        return user;
+        //return this.authState;
     }
 
     get expired(): boolean {
