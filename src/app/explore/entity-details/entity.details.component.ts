@@ -19,21 +19,18 @@ export class EntityDetails implements OnDestroy {
         let store = appStore.getState();
         this.placeId = store.explore.placeId;
 
+        this.mapService.fetchEntityDetails(this.placeId)
+            .then(data => {
+                this.entity = data;
+            });
+
         this.unsubscribeFromStore = appStore.subscribe((state) => {
             this.placeId = state.explore.placeId;
-
             this.mapService.fetchEntityDetails(this.placeId)
                 .then(data => {
                     this.entity = data;
                 });
         });
-    }
-
-    public ngOnInit() {
-        this.mapService.fetchEntityDetails(this.placeId)
-            .then(data => {
-                this.entity = data;
-            });
     }
 
     public ngOnDestroy() {
