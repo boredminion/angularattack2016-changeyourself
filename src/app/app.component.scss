@@ -84,11 +84,68 @@ footer{
 }
 }
 
+nav{
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+
+  a{
+    transition: linear .2s all;
+    text-decoration: none;
+  }
+  
+  .logo-wrapper{
+    a{
+      font-weight: bold;
+      text-transform: uppercase;
+      color: #fff;
+      font-size: 16px;
+    }
+  }
+
+  ul{
+    display: flex;
+    justify-content: flex-end;
+    align-items: center;
+
+    li{
+
+      &:not(:last-child){
+        margin-right: 10px;
+      }
+
+      a{
+        color: #fff;
+        font-size: 13px;
+        font-weight: bold;
+        border-radius: 0;
+
+        &.signUp{
+          background: #4CAF50;
+        }
+
+        &.login{
+          background: transparent;
+        }
+
+        &:hover,
+        &:focus{
+          border-color: #4CAF50;
+        }
+      }
+    }
+  }
+}
+
 footer {
   text-align: center;
   font-size: 0.8em;
   padding: 16px;
   background-color: #0732a2;
+}
+
+html{
+  height: 100%;
 }
 
 html{

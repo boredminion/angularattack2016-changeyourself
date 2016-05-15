@@ -223,7 +223,7 @@ module.exports = function makeWebpackConfig() {
    */
   config.postcss = [
     autoprefixer({
-      browsers: ['last 2 version']
+      browsers: ['last 5 version']
     })
   ];
 
