@@ -2,3 +2,60 @@
 * {
   color: #FFEF00;
 }
+
+my-home{
+	position: relative;
+	flex-grow: 1;
+}
+
+.video-fade{
+	position: absolute;
+	top: 0;
+	right: 0;
+	bottom: 0;
+	left: 0;
+	background: rgba(7, 50, 162, .42);
+}
+video{
+	width: 100%;
+	display: block;
+}
+
+.main-welcome{
+	position: absolute;
+	z-index: 10;
+	padding: 25px 0;
+	color: #ffffff;
+	width: 100%;
+	top: 50%;
+	transform: translateY(-50%);
+	background: rgba(7, 50, 162, .72);
+
+	h1{
+		text-transform: uppercase;
+		font-weight: bold;
+		margin: 0 0 25px 0;
+		color: #fff;
+	}
+
+	.main-welcome-list{
+		ul{
+			display: flex;
+			justify-content: center;
+
+			li{
+				text-align: center;
+
+				&:not(:last-child){
+					margin-right: 50px;
+				}
+
+				span:first-child{
+					color: #fff;
+					font-size: 18px;
+					font-weight: bold;
+				}
+			}
+		}
+	}
+}

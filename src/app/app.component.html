@@ -1,20 +1,47 @@
 <header>
-  <nav [ngSwitch]="authState">
-    <a [routerLink]="['Home']">Home</a>
-    <a [routerLink]="['About']">About</a>
-    <a [routerLink]="['Explore', {lat:50.492105, lng:30.521307}]">Explore</a>
-    <a [routerLink]="['SignUp']" *ngSwitchWhen="false">Sign Up</a>
-    <a [routerLink]="['Login']" *ngSwitchWhen="false">Login</a>
-    <a (click)="signOut()" *ngSwitchWhen="true">Sign Out</a>
-    <span></span>
-  </nav>
+  <div>{{get_authenticated()}}</div>
+  <div class="container">
+  	<nav>
+  		<div class="logo-wrapper">
+  			<a class="logo" [routerLink]="['Home']">changeyourself</a>
+  		</div>
+    	<ul>
+	    	<li>
+	   			<a [routerLink]="['About']">About</a>
+	    	</li>
+	    	<li>
+	    		<a [routerLink]="['Explore', {q:'?lat=50.492105&lon=30.521307'}]">Explore</a>
+	    	</li>
+	    	<li>
+	    		<a [routerLink]="['Login']">Login</a>
+	    	</li>
+	    	<li>
+	    		<a [routerLink]="['SignUp']">SignUp</a>
+	    	</li>
+	    </ul>
+	  </nav>
+  </div>
 </header>
 <main>
-
-
-
-  <router-outlet></router-outlet>
+  	<router-outlet></router-outlet>
 </main>
 <footer>
-  change you self
+  <div class="container">
+  	<nav>
+  		<div class="logo-wrapper">
+  			<a class="logo" [routerLink]="['Home']">changeyourself</a>
+  		</div>
+  		<ul>
+	    	<li>
+	   			<a href="#">Contact us</a>
+	    	</li>
+	    	<li>
+	   			<a href="#">Send email</a>
+	    	</li>
+	    	<li>
+	    		<a href="#">Lorem</a>
+	    	</li>
+	    </ul>
+  	</nav>
+  </div>
 </footer>
