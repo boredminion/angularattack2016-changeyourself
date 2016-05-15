@@ -11,19 +11,20 @@
 	    	<li>
 	    		<a [routerLink]="['Explore', {lat: 50.492105, lon: 30.521307}]">Explore</a>
 	    	</li>
-	    	<li>
-	    		<a [routerLink]="['Login']" *ngSwitchWhen="false">Login</a>
+	    	<li *ngSwitchWhen="false">
+	    		<a [routerLink]="['Login']">Login</a>
 	    	</li>
-	    	<li>
-	    		<a [routerLink]="['SignUp']" *ngSwitchWhen="false">SignUp</a>
+	    	<li *ngSwitchWhen="false">
+	    		<a [routerLink]="['SignUp']">SignUp</a>
 	    	</li>
-	    	<li>
-				<span *ngSwitchWhen="true">
-            <img src="{{user.img}}" alt="{{user.name}}">
-        </span>
-        <span *ngSwitchWhen="true">{{user.name}}</span>
-        <a (click)="signOut()" *ngSwitchWhen="true">Sign Out</a>
-        <span></span>
+	    	<li *ngSwitchWhen="true" class="user_login">
+				<span>
+		            <img src="{{user.img}}" alt="{{user.name}}">
+		        </span>
+	        	<span>{{user.name}}</span>
+	    	</li>
+	    	<li *ngSwitchWhen="true">
+	        	<a (click)="signOut()">Sign Out</a>
 	    	</li>
 	    </ul>
 	  </nav>

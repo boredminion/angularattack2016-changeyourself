@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, ViewEncapsulation } from '@angular/core';
 import { RouteConfig, ROUTER_DIRECTIVES } from '@angular/router-deprecated';
 import { AuthService } from './services/auth.servise';
 
@@ -17,6 +17,7 @@ import '../style/app.scss';
  */
 @Component({
   selector: 'my-app', // <my-app></my-app>
+  encapsulation: ViewEncapsulation.None,
   providers: [ApiService],
   viewProviders: [AuthService],
   directives: [...ROUTER_DIRECTIVES],

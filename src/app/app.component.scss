@@ -35,6 +35,17 @@ my-home{
   flex-grow: 1;
 }
 
+.user_login{
+  span:first-child{
+    max-width: 50px;
+    display: inline-block;
+  }
+
+  img{
+    width: 100%;
+  }
+}
+
 header,
 footer{
   nav{
