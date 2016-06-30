@@ -45,4 +45,19 @@ export class MapService {
             }
         });
     }
+
+    public fetchPhotos(photoreference: string){
+
+        return new Promise((resolve, reject) => {
+            try{
+                this.http.get(`https://maps.googleapis.com/maps/api/place/photo?maxwidth=400&photoreference=${photoreference}&key=${this.appKey}`)
+                    .subscribe(responce => {
+                        this.entity = responce.json().result;
+                        resolve(this.entity);
+                    });
+            }catch(e){
+                reject(e);
+            }
+        });
+    }
 }
